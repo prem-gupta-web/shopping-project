@@ -80,15 +80,66 @@ session_start();
 
    
     <!-- Products Section -->
-    <section id="products" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Products</h2>
-            <input type="text" id="search" class="form-control mb-4" placeholder="Search for products...">
-            <div class="product-list row">
-                <!-- Products will be dynamically loaded here -->
-            </div>
+<!-- Products Section -->
+<section id="products" class="products-section">
+    <div class="container">
+      <h2 class="section-title">Our Products</h2>
+      <div class="products-container">
+        
+        <!-- Product Card 1 -->
+        <div class="product-card">
+          <div class="product-image">
+          <img src="C:/xampp/htdocs/shopping-website/images/buds2.png" alt="Product Image" />
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">Product One</h3>
+            <p class="product-description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+            <p class="product-price">$29.99</p>
+          </div>
+          <div class="product-action">
+            <a href="#" class="btn">Buy Now</a>
+          </div>
         </div>
-    </section>
+        
+        <!-- Product Card 2 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="https://via.placeholder.com/300x200" alt="Product 2" />
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">Product Two</h3>
+            <p class="product-description">
+              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <p class="product-price">$39.99</p>
+          </div>
+          <div class="product-action">
+            <a href="#" class="btn">Buy Now</a>
+          </div>
+        </div>
+        
+        <!-- Product Card 3 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="C:/xampp/htdocs/shopping-website/images/buds1.png" alt="Product 3" />
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">Product Three</h3>
+            <p class="product-description">
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+            </p>
+            <p class="product-price">$49.99</p>
+          </div>
+          <div class="product-action">
+            <a href="#" class="btn">Buy Now</a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
 
     <!-- Cart Section -->
     <section id="cart" class="py-5">
