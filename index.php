@@ -1,5 +1,21 @@
 <?php
 session_start();
+include 'config.php';
+include 'cart.php';
+
+$cart = new Cart();
+
+// Fetch products from the database
+$result = $conn->query("SELECT * FROM products");
+
+// Handle Add to Cart
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
+    $productId = $_POST['product_id'];
+    $quantity = 1; // Default quantity
+    $cart->addProduct($productId, $quantity);
+    header("Location: cart-view.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +46,7 @@ session_start();
                         <li class="nav-item"><a class="nav-link" href="location.php">Our Location</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#cart">Cart</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cart-view.php">Cart</a></li>
                         <?php if (isset($_SESSION['user_id'])): ?>
                             <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
                         <?php else: ?>
@@ -44,102 +60,62 @@ session_start();
     </header>
 
     <!-- Carousel Section -->
-    <section id="carousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="C:/xampp/htdocs/shopping-website/buds1.png" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Slide 1</h5>
-                    <p>Welcome to our All To All Mobile!</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="path/to/your/image2.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Slide 2</h5>
-                    <p>Discover the best products at unbeatable prices.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="path/to/your/image3.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Slide 3</h5>
-                    <p>Enjoy a seamless shopping experience.</p>
-                </div>
+<section id="carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="images/1.jpg" class="d-block w-100" >
+            <div class="carousel-caption d-none d-md-block">
+              <p>Welcome to our All To All Mobile!</p>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </section>
+        <div class="carousel-item">
+            <img src="images/2.jpg" class="d-block w-100" alt="">
+            <div class="carousel-caption d-none d-md-block">
+              <p>Discover the best products at unbeatable prices.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="images/3.jpg" class="d-block w-100" alt="">
+            <div class="carousel-caption d-none d-md-block">
+                 <p>Enjoy a seamless shopping experience.</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</section>
 
    
     <!-- Products Section -->
-<!-- Products Section -->
-<section id="products" class="products-section">
-    <div class="container">
-      <h2 class="section-title">Our Products</h2>
-      <div class="products-container">
-        
-        <!-- Product Card 1 -->
-        <div class="product-card">
-          <div class="product-image">
-          <img src="C:/xampp/htdocs/shopping-website/images/buds2.png" alt="Product Image" />
-          </div>
-          <div class="product-content">
-            <h3 class="product-title">Product One</h3>
-            <p class="product-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-            <p class="product-price">$29.99</p>
-          </div>
-          <div class="product-action">
-            <a href="#" class="btn">Buy Now</a>
-          </div>
+           
+    <section id="products" class="products-section">
+          <div class="container">
+          <h2 class="section-title">Our Products</h2>
+          <div class="products-container">           
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="<?php echo $row['image']; ?>" class="card-img-top" alt="<?php echo $row['name']; ?>">
+                            <div class="product-content">
+                                <h5 class="product-title"><?php echo $row['name']; ?></h5>
+                                <p class="product-description"><?php echo $row['description']; ?></p>
+                                <p class="product-price"><strong>$<?php echo $row['price']; ?></strong></p>
+                                <a href="#" class="btn">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            </div>
         </div>
-        
-        <!-- Product Card 2 -->
-        <div class="product-card">
-          <div class="product-image">
-            <img src="https://via.placeholder.com/300x200" alt="Product 2" />
-          </div>
-          <div class="product-content">
-            <h3 class="product-title">Product Two</h3>
-            <p class="product-description">
-              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <p class="product-price">$39.99</p>
-          </div>
-          <div class="product-action">
-            <a href="#" class="btn">Buy Now</a>
-          </div>
-        </div>
-        
-        <!-- Product Card 3 -->
-        <div class="product-card">
-          <div class="product-image">
-            <img src="C:/xampp/htdocs/shopping-website/images/buds1.png" alt="Product 3" />
-          </div>
-          <div class="product-content">
-            <h3 class="product-title">Product Three</h3>
-            <p class="product-description">
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-            </p>
-            <p class="product-price">$49.99</p>
-          </div>
-          <div class="product-action">
-            <a href="#" class="btn">Buy Now</a>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  </section>
+    </section>
+
+
 
     <!-- Cart Section -->
     <section id="cart" class="py-5">
@@ -162,19 +138,19 @@ session_start();
     <h2 class="review-heading">What Our Customers Say</h2>
     <div class="review-carousel">
         <div class="review-card">
-            <img src="C:/xampp/htdocs/shopping-website/man6.jpg" alt="Customer 1" class="customer-photo">
+            <img src="images/man3.jpg" alt="Customer 1" class="customer-photo">
             <p class="review-text">"The product quality is outstanding! I’m very happy with my purchase."</p>
-            <h4 class="customer-name">- John Doe</h4>
+            <h4 class="customer-name">- sambhav</h4>
         </div>
         <div class="review-card">
-            <img src="C:/Users/premg/Desktop/project/man3.jpg" alt="Customer 2" class="customer-photo">
+            <img src="images/man6.jpg" alt="Customer 2" class="customer-photo">
             <p class="review-text">"Excellent service and fast delivery. Highly recommend this store!"</p>
-            <h4 class="customer-name">- Jane Smith</h4>
+            <h4 class="customer-name">- rahul </h4>
         </div>
         <div class="review-card">
-            <img src="C:/Users/premg/Desktop/project/man4.jpg" alt="Customer 3" class="customer-photo">
+            <img src="images/man4.jpg" alt="Customer 3" class="customer-photo">
             <p class="review-text">"Loved the variety of options and the helpful customer support team."</p>
-            <h4 class="customer-name">- Sarah Lee</h4>
+            <h4 class="customer-name">- abhishek</h4>
         </div>
     </div>
 </section>
@@ -182,17 +158,18 @@ session_start();
     <!-- Footer Section -->
     <footer class="bg-dark text-white py-4">
         <div class="container text-center">
-        <div class="footer-icons">
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-</div>
-
+        <p class="social-description">Stay connected with us on social media:</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=100091625616068" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.instagram.com/premguptaa_?utm_source=qr" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+            </div>
             <p>&copy; 2025 Shopping Website. All Rights Reserved.</p>
 
         </div>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
