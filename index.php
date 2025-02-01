@@ -7,7 +7,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Website</title>
+    <title>All To All Mobile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/4c729db828.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
@@ -17,7 +17,7 @@ session_start();
     <header class="header bg-dark text-white py-3">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark">
-                <a class="navbar-brand" href="index.php"><h1 class="h3">Shopping Website</h1></a>
+                <a class="navbar-brand" href="index.php"><h1 class="h3">All To All Mobile</h1></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -47,10 +47,10 @@ session_start();
     <section id="carousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="path/to/your/image1.jpg" class="d-block w-100" alt="...">
+                <img src="C:/xampp/htdocs/shopping-website/buds1.png" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Slide 1</h5>
-                    <p>Welcome to our shopping website!</p>
+                    <p>Welcome to our All To All Mobile!</p>
                 </div>
             </div>
             <div class="carousel-item">
@@ -78,45 +78,7 @@ session_start();
         </button>
     </section>
 
-    <!-- Featured Products Section -->
-    <section id="featured-products" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Featured Products</h2>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card">
-                        <img src="path/to/your/product1.jpg" class="card-img-top" alt="Product 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Product 1</h5>
-                            <p class="card-text">$100.00</p>
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card">
-                        <img src="path/to/your/product2.jpg" class="card-img-top" alt="Product 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Product 2</h5>
-                            <p class="card-text">$150.00</p>
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card">
-                        <img src="path/to/your/product3.jpg" class="card-img-top" alt="Product 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Product 3</h5>
-                            <p class="card-text">$200.00</p>
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+   
     <!-- Products Section -->
     <section id="products" class="py-5 bg-light">
         <div class="container">
@@ -144,38 +106,27 @@ session_start();
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Testimonials</h2>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="card-text">"Great shopping experience! The products are amazing and the service is top-notch."</p>
-                            <h5 class="card-title">- John Doe</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="card-text">"Fast delivery and excellent customer support. Highly recommend this store!"</p>
-                            <h5 class="card-title">- Jane Smith</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="card-text">"Quality products at great prices. Will definitely shop here again."</p>
-                            <h5 class="card-title">- Sarah Lee</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- review section  -->
+    <section class="customer-review-section">
+    <h2 class="review-heading">What Our Customers Say</h2>
+    <div class="review-carousel">
+        <div class="review-card">
+            <img src="C:/xampp/htdocs/shopping-website/man6.jpg" alt="Customer 1" class="customer-photo">
+            <p class="review-text">"The product quality is outstanding! I’m very happy with my purchase."</p>
+            <h4 class="customer-name">- John Doe</h4>
         </div>
-    </section>
+        <div class="review-card">
+            <img src="C:/Users/premg/Desktop/project/man3.jpg" alt="Customer 2" class="customer-photo">
+            <p class="review-text">"Excellent service and fast delivery. Highly recommend this store!"</p>
+            <h4 class="customer-name">- Jane Smith</h4>
+        </div>
+        <div class="review-card">
+            <img src="C:/Users/premg/Desktop/project/man4.jpg" alt="Customer 3" class="customer-photo">
+            <p class="review-text">"Loved the variety of options and the helpful customer support team."</p>
+            <h4 class="customer-name">- Sarah Lee</h4>
+        </div>
+    </div>
+</section>
 
     <!-- Footer Section -->
     <footer class="bg-dark text-white py-4">
